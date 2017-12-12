@@ -17,3 +17,8 @@ npm-debug.log
 /node_modules/
 /sitepackages/
 /tracker/static-dev/components/
+/bin/
+/include/
+/lib/
+.Python
+pip-selfcheck.json
