@@ -21,6 +21,7 @@
 					<td>
 					{% for user in ticket.assignees.all %}
 						{{ user.email }}{% if not forloop.last %},{% endif %}
+						{% empty %} No assigned users
 					{% endfor %}
 					</td>
 					<td>
@@ -31,6 +32,8 @@
 						</a>
 					</td>
 				</tr>
+				{% empty %}
+    				<tr><td>No tickets have been created for this project</td></tr>
 				{% endfor %}
 			</tbody>
 		</table>
