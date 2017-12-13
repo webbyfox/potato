@@ -1,7 +1,8 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView, CreateView, UpdateView, ListView
+from django.views.generic import TemplateView, CreateView, UpdateView, ListView, DeleteView
+# from django.urls import reverse_lazy
 
 from .forms import ProjectForm, TicketForm
 from .models import Project, Ticket
@@ -141,3 +142,16 @@ class UpdateTicketView(ProjectContextMixin, UpdateView):
 
 
 update_ticket_view = login_required(UpdateTicketView.as_view())
+
+class TicketDeleteView(DeleteView):
+    model = Ticket
+    form_class = TicketForm
+    pk_url_kwarg = 'ticket_id'
+    def get_success_url(self):
+        return reverse("project-detail", kwargs={"project_id": self.kwargs['project_id']})
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateTicketView, self).get_form_kwargs()
+        kwargs['project'] = self.project
+        return kwargs
+delete_ticket_view = login_required(TicketDeleteView.as_view())
