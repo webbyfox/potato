@@ -10,6 +10,11 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: djangae_gaedatastoreuser
+  properties:
+  - name: email
+  - name: username
+
 - kind: django_content_type
   properties:
   - name: app_label
