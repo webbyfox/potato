@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, CreateView, UpdateView, ListView,
 
 from .forms import ProjectForm, TicketForm
 from .models import Project, Ticket
-
+from google.appengine.ext import db
 
 class ProjectContextMixin(object):
     project = None
@@ -47,7 +47,8 @@ my_tickets_view = MyTicketsView.as_view()
 class ProjectListView(ListView):
     model = Project
     template_name = "site/project_list.html"
-
+    queryset = Project.objects.all()
+    ordering = ['-tickets__assignees']
 
 project_list_view = ProjectListView.as_view()
 

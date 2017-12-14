@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 from crispy_forms_foundation.forms import FoundationModelForm
-
 from .models import Project, Ticket
 
 
